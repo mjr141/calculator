@@ -19,5 +19,6 @@ function divide (a, b) {
 }
 
 function operate (op, a, b) {
-  add(a,b);
+  const result = add(a,b);
+  return result;
 }
