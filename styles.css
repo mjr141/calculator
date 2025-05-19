@@ -25,7 +25,8 @@ body {
   min-height: 40px;
   padding: 4px 8px;
   border-radius: 4px;
-  margin: 4px 0px;
+  margin-top: 4px;
+  margin-bottom: 8px;
 }
 
 button {
@@ -55,7 +56,5 @@ button {
   visibility: hidden;
 }
 
-/* digits light grey background
-operators light blue background
-equals light purple background
-display light purple background (lighter than equals), larger text */
+/* on hover: darken slightly
+on click: darken a bit more! */
