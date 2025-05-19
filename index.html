@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Calculator</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="calculator-container">
+  <div class="container">
     <div class="display">
       24
     </div>
     <div class="row">
+      <button class="empty"></button>
+      <button class="empty"></button>
+      <button class="empty"></button>
       <button class="operator">&divide;</button>
     </div>
     <div class="row">
@@ -31,8 +35,10 @@
       <button class="operator">+</button>
     </div>
     <div class="row">
-      <button>0</button>
-      <button class="operator">=</button>
+      <button class="digit">0</button>
+      <button class="empty"></button>
+      <button class="empty"></button>
+      <button id="equals" class="operator">=</button>
     </div>
   </div>
   <script src="script.js"></script>
