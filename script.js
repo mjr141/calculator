@@ -9,6 +9,9 @@ for (digit of digits) {
   digit.addEventListener("click", getDigit);
 }
 
+clear = document.getElementById("clear");
+clear.addEventListener("click", clearDisplay);
+
 function add(a, b) {
   return a + b;
 }
@@ -41,4 +44,8 @@ function getDigit (event) {
 function updateDisplay(value) {
   display.innerHTML = display.innerHTML + value;
   // alert(Number(display.innerHTML))
+}
+
+function clearDisplay() {
+  display.innerHTML = "";
 }
