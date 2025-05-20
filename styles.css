@@ -41,6 +41,14 @@ button {
   flex: 1;
 }
 
+button:hover {
+  background-image: linear-gradient(rgb(0 0 0/10%) 0 0);
+}
+
+button:active {
+  background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+}
+
 .digit {
   color: #000;
   background-color: snow;
