@@ -52,6 +52,10 @@ button {
   background-color: bisque;
 }
 
+#clear {
+  background-color: palegreen;
+}
+
 .empty {
   visibility: hidden;
 }
