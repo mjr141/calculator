@@ -1,103 +1,75 @@
-let operator;
-let num1; // used for initial input and result of operations
-let num2;
+const multiply = "\u00D7";
+const subtract = "\u2212";
+const add = "+";
+const divide = "\u00F7";
+// create a regex of operators here?
 
 const display = document.querySelector(".display");
-let displayValue = 0;
+display.innerHTML = "";
 
 const digits = document.getElementsByClassName("digit");
 for (const digit of digits) {
-  digit.addEventListener("click", getDigit);
+  digit.addEventListener("click", updateDisplay);
 }
 
 const operators = document.getElementsByClassName("operator");
 for (const op of operators) {
-  op.addEventListener("click", cueOperation);
+  op.addEventListener("click", updateDisplay);
 }
 
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", clear);
 
-function add(a, b) {
+function addFn(a, b) {
   return a + b;
 }
 
-function subtract(a, b) {
+function subtractFn (a, b) {
   return a - b;
 }
 
-function multiply (a, b) {
+function multiplyFn (a, b) {
   return a * b;
 }
 
-function divide (a, b) {
+function divideFn (a, b) {
   return a / b;
 }
 
 function operate (op, a, b) {
-  switch(operator) {
-    case "add":
-      return add(a, b);
+  const expression = display.innerHTML;
+
+  const numbers = expression.split(/\D/);
+  const ops = expression.split(/[0-9]/).filter(x => x);
+
+  // iterate through operators and reduce numbers array to get result?
+
+/*   switch(operator) {
+    case add:
+      return addFn(a, b);
       break;
-    case "subtract":
-      return subtract(a, b);
+    case subtract:
+      return subtractFn(a, b);
       break;
-    case "multiply":
-      return multiply(a, b);
+    case multiply:
+      return multiplyFn(a, b);
       break;
-    case "divide":
-      return divide(a, b);
+    case divide:
+      return divideFn(a, b);
       break;
     default:
       return;
-  }
+  } */
 }
 
-// to run when an operator is clicked: update global variables, perform an operation if appropriate
-function cueOperation (event) {
-  if (operator === undefined) {
-    operator = event.target.id;
-    num1 = displayValue;
-    clearDisplay();
-    console.log(`num1: ${num1}, num2: ${num2}, operator: ${operator}`);
-    return;
-  }
-
-  else if (num2 === undefined) {
-    num2 = displayValue;
-    num1 = operate(operator, num1, num2); // we perform the operation with the previous operator clicked on
-    num2 = undefined;
-    operator = event.target.id;
-    clearDisplay();
-    updateDisplay(num1);
-    console.log(`num1: ${num1}, num2: ${num2}, operator: ${operator}`);
-    return;
-  }
+// add button character clicked on to display
+function updateDisplay (event) {
+  const character = event.target.innerHTML;
+  // alert(character);
+  display.innerHTML = display.innerHTML + character;
 }
 
-// returns (in the form of a string) the value of the digit clicked on
-function getDigit (event) {
-  number = event.target.innerHTML;
-  // alert(number);
-  updateDisplay(number);
-}
-
-// update display with value of the digit clicked on, store in displayValue
-function updateDisplay(value) {
-  display.innerHTML = display.innerHTML + value;
-  // alert(Number(display.innerHTML))
-  displayValue = Number(display.innerHTML);
-}
-
-function clearDisplay() {
-  display.innerHTML = "";
-  displayValue = 0;
-}
-
-// clear display and reset its value to 0
+// clear display
 function clear() {
-  clearDisplay();
-  num1 = undefined;
-  num2 = undefined;
-  operator = undefined;
+  display.innerHTML = "";
 }
