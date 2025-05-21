@@ -5,13 +5,18 @@ let num2;
 const display = document.querySelector(".display");
 let displayValue = 0;
 
-digits = document.getElementsByClassName("digit");
-for (digit of digits) {
+const digits = document.getElementsByClassName("digit");
+for (const digit of digits) {
   digit.addEventListener("click", getDigit);
 }
 
-clear = document.getElementById("clear");
-clear.addEventListener("click", clear);
+const operators = document.getElementsByClassName("operator");
+for (const op of operators) {
+  op.addEventListener("click", cueOperation);
+}
+
+const clearBtn = document.getElementById("clear");
+clearBtn.addEventListener("click", clear);
 
 function add(a, b) {
   return a + b;
@@ -30,28 +35,27 @@ function divide (a, b) {
 }
 
 function operate (op, a, b) {
-  const result = add(a,b);
-  return result;
+  return add(a, b);
 }
 
-/*
-clicking operator:
+// to run when an operator is clicked: update global variables, perform an operation if appropriate
+function cueOperation (event) {
+  if (operator === undefined) {
+    operator = event.target.id;
+    num1 = displayValue;
+    clearDisplay();
+    return;
+  }
 
-user inputs a number, stored in displayValue
-
-user clicks on operator
-
-  operator id is stored...
-
-  if num1 undefined
-    displayValue goes to num1
-    no operations occur
-
-  else displayValue goes to num2
-    operator id is checked
-    we do eg. sum num1 and num2
-    result is stored in num1 and displayed, num2 is set to undefined
-*/
+  else if (num2 === undefined) {
+    num2 = displayValue;
+    num1 = operate(operator, num1, num2); // we perform the operation with the previous operator clicked on
+    num2 = undefined;
+    operator = event.target.id;
+    clearDisplay();
+    return;
+  }
+}
 
 // returns (in the form of a string) the value of the digit clicked on
 function getDigit (event) {
@@ -67,10 +71,15 @@ function updateDisplay(value) {
   displayValue = Number(display.innerHTML);
 }
 
-// clear display and reset its value to 0
-function clear() {
+function clearDisplay() {
   display.innerHTML = "";
   displayValue = 0;
+}
+
+// clear display and reset its value to 0
+function clear() {
+  clearDisplay();
   num1 = undefined;
   num2 = undefined;
+  operator = undefined;
 }
