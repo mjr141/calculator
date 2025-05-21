@@ -36,14 +36,20 @@ function divideFn (a, b) {
   return a / b;
 }
 
-function operate (op, a, b) {
+function evaluateDisplay() {
   const expression = display.innerHTML;
-
   const numbers = expression.split(/\D/);
-  const ops = expression.split(/[0-9]/).filter(x => x);
+  // const ops = expression.split(/[0-9]/).filter(x => x);
+  const ops = expression.match(/[\u00D7\u2212+\u00F7"]/g);
+  console.log(expression);
+  console.log(numbers);
+  console.log(ops);
+  return ops; // for testing
 
   // iterate through operators and reduce numbers array to get result?
+}
 
+function operate (op, a, b) {
 /*   switch(operator) {
     case add:
       return addFn(a, b);
