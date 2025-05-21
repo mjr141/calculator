@@ -35,7 +35,22 @@ function divide (a, b) {
 }
 
 function operate (op, a, b) {
-  return add(a, b);
+  switch(operator) {
+    case "add":
+      return add(a, b);
+      break;
+    case "subtract":
+      return subtract(a, b);
+      break;
+    case "multiply":
+      return multiply(a, b);
+      break;
+    case "divide":
+      return divide(a, b);
+      break;
+    default:
+      return;
+  }
 }
 
 // to run when an operator is clicked: update global variables, perform an operation if appropriate
@@ -44,6 +59,7 @@ function cueOperation (event) {
     operator = event.target.id;
     num1 = displayValue;
     clearDisplay();
+    console.log(`num1: ${num1}, num2: ${num2}, operator: ${operator}`);
     return;
   }
 
@@ -53,6 +69,8 @@ function cueOperation (event) {
     num2 = undefined;
     operator = event.target.id;
     clearDisplay();
+    updateDisplay(num1);
+    console.log(`num1: ${num1}, num2: ${num2}, operator: ${operator}`);
     return;
   }
 }
