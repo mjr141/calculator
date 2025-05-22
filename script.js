@@ -20,6 +20,9 @@ for (const op of operators) {
 const clearBtn = document.getElementById("clear");
 clearBtn.addEventListener("click", clear);
 
+const equalsBtn = document.getElementById("equals");
+equalsBtn.addEventListener("click", evaluateDisplay)
+
 function addFn(a, b) {
   return a + b;
 }
@@ -38,21 +41,10 @@ function divideFn (a, b) {
 
 function evaluateDisplay() {
   const expression = display.innerHTML;
-
-  // get an array of numbers
   const numbers = expression.split(/\D/).map(str => Number(str));
-
-  // get an array of operator characters
-  const ops = expression.match(/[\u00D7\u2212+\u00F7"]/g); // array of operator characters
-
-  /* return {
-    numbers: numbers,
-    ops: ops
-  }; */
-
-  // evaluate the expression!
-  // numbers.reduce ((a, b, i) => operate(result.ops[i-1], a, b))
-  console.log(numbers.reduce ((a, b, i) => operate(result.ops[i-1], a, b)))
+  const ops = expression.match(/[\u00D7\u2212+\u00F7"]/g);
+  // numbers.reduce ((a, b, i) => operate(ops[i-1], a, b))
+  console.log(numbers.reduce ((a, b, i) => operate(ops[i-1], a, b)))
 }
 
 function operate (op, a, b) {
